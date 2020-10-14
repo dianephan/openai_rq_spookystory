@@ -1,0 +1,6 @@
+redis-6.0.6.tar.gz
+/venv
+.env
+samapp.py
+__pycache__
+redis-6.0.6
