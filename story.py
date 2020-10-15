@@ -27,7 +27,7 @@ def write_story(session_story=None):
       presence_penalty=0.3,
     )
     story = response['choices'][0]['text']
-    # print("Story = ", story)
+    print(story)
     append_to_story(story, session_story)
     file1.write(story)
     return str(story)
