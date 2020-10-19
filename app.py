@@ -1,5 +1,3 @@
-from datetime import datetime, timedelta
-import time
 import os
 from redis import Redis
 from rq import Queue
@@ -8,8 +6,9 @@ import story
 queue = Queue(connection=Redis())
 
 def queue_tasks():
-    for x in range(10):
-        queue.enqueue_in(timedelta(seconds=5), story.write_story)
+    for x in range(2):
+        first_queued_job = queue.enqueue(story.write_story)
+        queue.enqueue(story.write_story, depends_on=first_queued_job)
 
 def main():
     queue_tasks()
